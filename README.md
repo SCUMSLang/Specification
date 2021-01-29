@@ -14,8 +14,6 @@ static <var_name> = <value>;
 
 **Functions**
 
-Function are like a template
-
 ```
 function <function_name>() {
     
@@ -26,7 +24,7 @@ function <function_name>() {
 
 ```
 // Anonymous event handler
-function () when <condition_name>(), ..., <another_condition_name>(...) {
+function() when <condition_name>(), ..., <another_condition_name>(...) {
 
 }
 
@@ -60,7 +58,7 @@ template function<template_variable, ..., another_template_variable>(<argument>,
 
 }
 
-template (<variable_name>) for (<value>, ..., <another_value>) and (<value>, ..., <another_value>) {
+template (<variable_name, another_variable_name>) for (<value>, ..., <another_value>) and (<value>, ..., <another_value>) {
 
 }
 ```

@@ -1,8 +1,8 @@
-# SCRUML Language Specification
+# SCUMSLang Language Specification
 
 ## About
 
-SCRUML is a modern StarCraft User Map Settings language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
+SCUMSLang is a modern StarCraft User Map Settings language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
 
 ## Specification
 

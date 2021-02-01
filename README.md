@@ -2,20 +2,26 @@
 
 ## About
 
-SCUMSLang is a modern StarCraft User Map Settings language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
+SCUMSLang is a modern StarCraft User Map Settings programming language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
 
 ## Specification
 
 **Static variables**
 
 ```
-static <var_name> = <value>;
+static int var_name = <value>;
 ```
 
 **Functions**
 
 ```
-function <function_name>() {
+// Non-generic function
+function function_name() {
+    
+}
+
+// Generic function
+function <generic_parameter_name>function_name() {
     
 }
 ```
@@ -24,12 +30,12 @@ function <function_name>() {
 
 ```
 // Anonymous event handler
-function() when <condition_name>(), ..., <another_condition_name>(...) {
+function () when condition_name(), ..., another_condition_name(...) {
 
 }
 
 // Named event handler
-function <function_name>() <condition_name>(), ..., <another_condition_name>(...) {
+function function_name() condition_name(), ..., another_condition_name(...) {
 
 }
 ```
@@ -38,12 +44,12 @@ function <function_name>() <condition_name>(), ..., <another_condition_name>(...
 
 ```
 // Argumentless attribute
-[<attribute_name>]
+[attribute_name]
 ...
-[<another_attribute_name>]
+[another_attribute_name]
 
 // Attribute with arguments
-[<attribute_name>("arg1", 2)]
+[attribute_name("arg1", 2)]
 ```
 
 **Constants**
@@ -58,7 +64,8 @@ template function<template_variable, ..., another_template_variable>(<argument>,
 
 }
 
-template (<variable_name, another_variable_name>) for (<value>, ..., <another_value>) and (<value>, ..., <another_value>) {
+// Template block
+template (variable_name, another_variable_name) for (1, 2, 3) and (0x1, 0x2, 0x3) and ("1", "2", "3") {
 
 }
 ```
@@ -66,7 +73,7 @@ template (<variable_name, another_variable_name>) for (<value>, ..., <another_va
 **Blocks**
 
 ```
-ordered {
+sequence {
     // All event handlers in this block are fired sequentially
 }
 ```

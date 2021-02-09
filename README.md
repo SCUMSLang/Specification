@@ -4,37 +4,71 @@
 
 SCUMSLang is a modern StarCraft User Map Settings programming language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
 
-## Specification
+## Language Syntax
 
-**Static variables**
+**Imports**
+
+File `Index.umsh` may contain:
 
 ```
-static int var_name = <value>;
+// Imports file "State.umsh" one folder above.
+import "../State.umsh";
+```
+
+```
+// Imports file "State.umsh" in folder States.
+import "./States/State.umsh";
+```
+
+**Type Definitions**
+
+```
+// Makes false and true usable as constants.
+// Both constants are still of type Boolean.
+typedef enum { false, true } Boolean;
+```
+
+**Type Aliases**
+
+```
+// A type definition where int is the alias for UInt32.
+// Assumes that the type UInt32 already exists.
+typedef UInt32 int;
+```
+
+**Static Variables**
+
+```
+// Declares a variable var_name of type int.
+// The value 2 is assigned.
+static int var_name = 2;
 ```
 
 **Functions**
 
 ```
-// Non-generic function
+// A non-generic function.
 function function_name() {
     
 }
 
-// Generic function
+// A generic function
 function <generic_parameter_name>function_name() {
     
 }
 ```
 
-**Event handlers**
+**Event Handlers**
+
+A event handler is a function with conditions. They represent the triggers in StarCraft.
 
 ```
-// Anonymous event handler
+// An anonymous event handler.
 function () when condition_name(), ..., another_condition_name(...) {
 
 }
 
-// Named event handler
+// A named event handler.
 function function_name() condition_name(), ..., another_condition_name(...) {
 
 }
@@ -52,10 +86,6 @@ function function_name() condition_name(), ..., another_condition_name(...) {
 [attribute_name("arg1", 2)]
 ```
 
-**Constants**
-
-Constants are pre-defined and in-built values of StarCraft which are simply said constant names (e.g. Player1).
-
 **Templates**
 
 ```
@@ -64,7 +94,7 @@ template function<template_variable, ..., another_template_variable>(<argument>,
 
 }
 
-// Template block
+// A template block.
 template (variable_name, another_variable_name) for (1, 2, 3) and (0x1, 0x2, 0x3) and ("1", "2", "3") {
 
 }

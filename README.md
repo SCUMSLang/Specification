@@ -20,7 +20,7 @@ import "../State.umsh";
 import "./States/State.umsh";
 ```
 
-**Type Definitions**
+**typedef enum directive**
 
 ```
 // Makes false and true usable as constants.
@@ -28,7 +28,7 @@ import "./States/State.umsh";
 typedef enum { false, true } Boolean;
 ```
 
-**Type Aliases**
+**typedef directive**
 
 ```
 // A type definition where int is the alias for UInt32.
@@ -36,74 +36,94 @@ typedef enum { false, true } Boolean;
 typedef UInt32 int;
 ```
 
-**Static Variables**
+**using static directive**
+
+The `using static` directive designates a enum type whose field members you can access without specifying a enum type name. Its syntax is:
 
 ```
-// Declares a variable var_name of type int.
-// The value 2 is assigned.
-static int var_name = 2;
+using static <fully-qualified-type-name>;
 ```
 
-**Functions**
+**static keyword**
+
+The `static` keyword is used to define a variable in the global block scope. It's syntax is:
+
+```
+// Declaration without initial assignment.
+static <type> <variable-name>;
+
+// Declaration with initial assignment.
+static <type> <variable-name> = <value>;
+```
+
+**`function` keyword**
+
+The `function` keyword introduces a new function which has to be followed by a name and an argument list. For example:
 
 ```
 // A non-generic function.
-function function_name() {
-    
-}
+function function_name(...)
+{ ... }
 
 // A generic function
-function <generic_parameter_name>function_name() {
-    
-}
+function function_name<generic_parameter_name>(...)
+{ ... }
 ```
 
-**Event Handlers**
+**function...when**
 
 A event handler is a function with conditions. They represent the triggers in StarCraft.
 
 ```
 // An anonymous event handler.
-function () when condition_name(), ..., another_condition_name(...) {
-
-}
+function () when condition_name(), ..., another_condition_name(...)
+{ ... }
 
 // A named event handler.
-function function_name() condition_name(), ..., another_condition_name(...) {
-
-}
+function function_name() condition_name(), ..., another_condition_name(...)
+{ ... }
 ```
 
-**Attributes**
+**`[...]` attribute**
+
+The `[...]` attribute defines an attribute which can be applied on functions. For example:
 
 ```
-// Argumentless attribute
-[attribute_name]
-...
-[another_attribute_name]
+// COMPILER SPECIFIC, NOT PART OF EXAMPLE:
+// Introduce AttributeExample as attribute.
+[AttributeUsage]
+function AttributeExample();
 
-// Attribute with arguments
-[attribute_name("arg1", 2)]
+// COMPILER SPECIFIC, NOT PART OF EXAMPLE:
+// Introduce AnotherAttributeExample as attribute.
+[AttributeUsage]
+function AnotherAttributeExample(int int_val);
+
+[AttributeExample]
+[AnotherAttributeExample(0x3)]
+// Following function does now have these attributes above.
+do_something();
 ```
 
-**Templates**
+**`template function` directive**
+
+The `template function` directive creates a function which resolves template arguments at compile time and arguments at runtime like in non-template `function`s.
 
 ```
-// A template function has template arguments that only accepts constants.
-template function<template_variable, ..., another_template_variable>(<argument>, ..., <another_argument>) {
+// A template function that specifies two variables resolved at compile time and two arguments resolved at runtime.
+template function<Unit UnitId, Player PlayerId>(<type> <argument_name>, <type> <another_argument_name>)
+{ ... }
+```
 
-}
+**`template foreach` directive**
 
+```
 // A template block.
-template (variable_name, another_variable_name) for (1, 2, 3) and (0x1, 0x2, 0x3) and ("1", "2", "3") {
-
-}
-```
-
-**Blocks**
-
-```
-sequence {
-    // All event handlers in this block are fired sequentially
+template foreach (Player PlayerId, Unit UnitId, ...)
+    // Line-breaks just for visual purposes 😊
+    in (Player.Player1)
+    in (Unit.ZergZergling)
+{
+    greet_player(UnitId, PlayerId);
 }
 ```

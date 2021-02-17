@@ -1,12 +1,36 @@
-# SCUMSLang Language Specification
+# SCUMSLang Language Specification <!-- omit in toc -->
 
-## About
+## About <!-- omit in toc -->
 
 SCUMSLang is a modern StarCraft User Map Settings programming language that has its goal to supersede the normally used language in StarEdit (nowadays superseded by ScmDraft) to define custom behaviour in maps.
 
-## Language Syntax
+## Table of Contents <!-- omit in toc -->
 
-**`import` directive**
+- [1. Integrated Types](#1-integrated-types)
+- [2. Language Syntax](#2-language-syntax)
+  - [2.1. **`import` directive**](#21-import-directive)
+  - [2.2. **`typedef enum` expression**](#22-typedef-enum-expression)
+  - [2.3. **`typedef` expression**](#23-typedef-expression)
+  - [2.4. **`using static` directive**](#24-using-static-directive)
+  - [2.5. **`static` keyword**](#25-static-keyword)
+  - [2.6. **`function` keyword**](#26-function-keyword)
+  - [2.7. **`function...when`**](#27-functionwhen)
+  - [2.8. **`[...]` attribute**](#28--attribute)
+  - [2.9. **`template function` expression**](#29-template-function-expression)
+  - [2.10. **`template foreach` expression**](#210-template-foreach-expression)
+
+## 1. Integrated Types
+
+SCUMSLang-Keyword | SCUMSLang-Type | StarCraft-Type
+------------------|----------------|----------------
+`int`             | UInt32         | UInt32
+`byte`            | UInt8          | UInt32 (shared)
+`enum`            | -              | -
+`string`          | String         | Text
+
+## 2. Language Syntax
+
+### 2.1. **`import` directive**
 
 File `Index.umsh` may contain:
 
@@ -20,7 +44,7 @@ import "../State.umsh";
 import "./States/State.umsh";
 ```
 
-**`typedef` enum directive**
+### 2.2. **`typedef enum` expression**
 
 ```
 // Makes false and true usable as constants.
@@ -28,7 +52,7 @@ import "./States/State.umsh";
 typedef enum { false, true } Boolean;
 ```
 
-**`typedef` directive**
+### 2.3. **`typedef` expression**
 
 ```
 // A type definition where int is the alias for UInt32.
@@ -36,7 +60,7 @@ typedef enum { false, true } Boolean;
 typedef UInt32 int;
 ```
 
-**`using static` directive**
+### 2.4. **`using static` directive**
 
 The `using static` directive designates a enum type whose field members you can access without specifying a enum type name. Its syntax is:
 
@@ -44,7 +68,7 @@ The `using static` directive designates a enum type whose field members you can 
 using static <fully-qualified-type-name>;
 ```
 
-**`static` keyword**
+### 2.5. **`static` keyword**
 
 The `static` keyword is used to define a variable in the global block scope. It's syntax is:
 
@@ -56,7 +80,7 @@ static <type> <variable-name>;
 static <type> <variable-name> = <value>;
 ```
 
-**`function` keyword**
+### 2.6. **`function` keyword**
 
 The `function` keyword introduces a new function which has to be followed by a name and an argument list. For example:
 
@@ -70,21 +94,19 @@ function function_name<generic_parameter_name>(...)
 { ... }
 ```
 
-**`function...when`**
+### 2.7. **`function...when`**
 
 A event handler is a function with conditions. They represent the triggers in StarCraft.
 
 ```
-// An anonymous event handler.
-function () when condition_name(), ..., another_condition_name(...)
-{ ... }
-
 // A named event handler.
-function function_name() condition_name(), ..., another_condition_name(...)
+function function_name() 
+    when condition_name()
+    when another_condition_name(...)
 { ... }
 ```
 
-**`[...]` attribute**
+### 2.8. **`[...]` attribute**
 
 The `[...]` attribute defines an attribute which can be applied on functions. For example:
 
@@ -105,9 +127,9 @@ function AnotherAttributeExample(int int_val);
 do_something();
 ```
 
-**`template function` directive**
+### 2.9. **`template function` expression**
 
-The `template function` directive creates a function which resolves template arguments at compile time and arguments at runtime like in non-template `function`s.
+The `template function` expression creates a function which resolves template arguments at compile time and arguments at runtime like in non-template `function`s.
 
 ```
 // A template function that specifies two variables resolved at compile time and two arguments resolved at runtime.
@@ -115,14 +137,14 @@ template function<Unit UnitId, Player PlayerId>(<type> <argument_name>, <type> <
 { ... }
 ```
 
-**`template foreach` directive**
+### 2.10. **`template foreach` expression**
 
 ```
 // A template block.
-template foreach (Player PlayerId, Unit UnitId, ...)
+template 
     // Line-breaks just for visual purposes 😊
-    in (Player.Player1)
-    in (Unit.ZergZergling)
+    for (Player PlayerId) in (Player.Player1)
+    for (Unit UnitId) in (Unit.ZergZergling)
 {
     greet_player(UnitId, PlayerId);
 }

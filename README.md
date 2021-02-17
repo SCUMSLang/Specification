@@ -19,7 +19,7 @@ SCUMSLang is a modern StarCraft User Map Settings programming language that has 
   - [4.7. **`function...when`**](#47-functionwhen)
   - [4.8. **`[...]` attribute**](#48--attribute)
   - [4.9. **`template function` expression**](#49-template-function-expression)
-  - [4.10. **`template foreach` expression**](#410-template-foreach-expression)
+  - [4.10. **`template for` expression**](#410-template-for-expression)
 
 ## 1. File extensions
 
@@ -158,7 +158,7 @@ template function<Unit UnitId, Player PlayerId>(<type> <argument_name>, <type> <
 { ... }
 ```
 
-### 4.10. **`template foreach` expression**
+### 4.10. **`template for` expression**
 
 ```
 // A template block.

@@ -6,21 +6,21 @@ SCUMSLang is a modern StarCraft User Map Settings programming language that has 
 
 ## Language Syntax
 
-**Imports**
+**`import` directive**
 
 File `Index.umsh` may contain:
 
 ```
-// Imports file "State.umsh" one folder above.
+// Imports file "State.umsh" one folder above this file's directory.
 import "../State.umsh";
 ```
 
 ```
-// Imports file "State.umsh" in folder States.
+// Imports file "State.umsh" in folder States of this file's directory.
 import "./States/State.umsh";
 ```
 
-**typedef enum directive**
+**`typedef` enum directive**
 
 ```
 // Makes false and true usable as constants.
@@ -28,7 +28,7 @@ import "./States/State.umsh";
 typedef enum { false, true } Boolean;
 ```
 
-**typedef directive**
+**`typedef` directive**
 
 ```
 // A type definition where int is the alias for UInt32.
@@ -36,7 +36,7 @@ typedef enum { false, true } Boolean;
 typedef UInt32 int;
 ```
 
-**using static directive**
+**`using static` directive**
 
 The `using static` directive designates a enum type whose field members you can access without specifying a enum type name. Its syntax is:
 
@@ -44,7 +44,7 @@ The `using static` directive designates a enum type whose field members you can 
 using static <fully-qualified-type-name>;
 ```
 
-**static keyword**
+**`static` keyword**
 
 The `static` keyword is used to define a variable in the global block scope. It's syntax is:
 
@@ -70,7 +70,7 @@ function function_name<generic_parameter_name>(...)
 { ... }
 ```
 
-**function...when**
+**`function...when`**
 
 A event handler is a function with conditions. They represent the triggers in StarCraft.
 

@@ -134,12 +134,12 @@ The `[...]` attribute defines an attribute which can be applied on functions. Fo
 ```
 // COMPILER SPECIFIC, NOT PART OF EXAMPLE:
 // Introduce AttributeExample as attribute.
-[AttributeUsage]
+[Attribute]
 function AttributeExample();
 
 // COMPILER SPECIFIC, NOT PART OF EXAMPLE:
 // Introduce AnotherAttributeExample as attribute.
-[AttributeUsage]
+[Attribute]
 function AnotherAttributeExample(int int_val);
 
 [AttributeExample]
